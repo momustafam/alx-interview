@@ -4,7 +4,7 @@
 
 def pascal_triangle(nrows):
     '''Represent the pascal's triangle using a list of lists of integers.
-    
+
         Paramters:
             - nrows (int): number of triangle's rows
 
@@ -18,6 +18,8 @@ def pascal_triangle(nrows):
             if col == 0 or col == row:
                 row_values.append(1)
             else:
-                row_values.append(pascals_triangle[row-1][col] + pascals_triangle[row-1][col-1])
+                val1 = pascals_triangle[row-1][col]
+                val2 = pascals_triangle[row-1][col-1]
+                row_values.append(val1 + val2)
         pascals_triangle.append(row_values)
     return pascals_triangle
