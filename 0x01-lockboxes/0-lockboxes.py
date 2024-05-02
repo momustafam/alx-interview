@@ -1,15 +1,27 @@
 #!/usr/bin/python3
-'''Simple module since it has only a simple function canUnlockAll(boxes).'''
+"""Module containing Lockboxes problem solution"""
 
 
 def canUnlockAll(boxes):
-    '''Determines if all the boxes can be opened.'''
-    opened_boxes = [False for i in range(len(boxes))]
-    keys = {0}
-    while keys:
-        cur_key = keys.pop()
-        opened_boxes[cur_key] = True
-        for key in boxes[cur_key]:
-            if not opened_boxes[key]:
-                keys.add(key)
-    return sum(opened_boxes) == len(boxes)
+    """
+        determines if all the boxes can be opened
+
+        Args:
+            boxes (list): a list of lists
+
+        Returns:
+            True if all boxes can be opened, else return False
+    """
+    if not isinstance(boxes, list) or len(boxes) == 0:
+        return False
+
+    for k in range(1, len(boxes) - 1):
+        boxes_checked = False
+        for idx, box in enumerate(boxes):
+            if k in box and k != idx:
+                boxes_checked = True
+                break
+        if not boxes_checked:
+            return False
+
+    return True
